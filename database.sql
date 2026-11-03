@@ -1,4 +1,3 @@
--- Run this in phpMyAdmin > SQL tab
 CREATE DATABASE IF NOT EXISTS lutongbahay;
 USE lutongbahay;
 
@@ -11,6 +10,5 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- Starter admin account. Username: admin   Password: admin123
 INSERT INTO users (username, password, status, role) VALUES
 ('admin', '$2b$12$MjxIhVoNLFlYAIHJsxDgR.LW.DIi/yMrEywpuLYyTWoMWjWmwUBIe', 'approved', 'admin');

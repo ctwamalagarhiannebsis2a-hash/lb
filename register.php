@@ -19,14 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
     if (!$errors) {
-        // Is the username already taken?
         $check = $conn->prepare("SELECT id FROM users WHERE username = ?");
         $check->bind_param("s", $username);
         $check->execute();
         if ($check->get_result()->num_rows > 0) {
             $errors[] = "That username is already taken.";
         } else {
-            // Save with a hashed password. Status defaults to 'pending'.
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             $stmt->bind_param("ss", $username, $hash);

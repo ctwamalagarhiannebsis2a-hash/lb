@@ -1,13 +1,11 @@
 <?php
 require_once "config.php";
 
-// Only signed-in users can see this page
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
 
-// Admin can approve pending accounts
 if ($_SESSION['role'] === 'admin' && isset($_GET['approve'])) {
     $id = (int) $_GET['approve'];
     $stmt = $conn->prepare("UPDATE users SET status = 'approved' WHERE id = ?");
